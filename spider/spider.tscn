@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://ctvuxvw5y3b41"]
+[gd_scene load_steps=23 format=3 uid="uid://ctvuxvw5y3b41"]
 
 [ext_resource type="Texture2D" uid="uid://cyttnx8c07i5h" path="res://spider/Sprites/spider_LegModule.png" id="1_7d7ob"]
 [ext_resource type="Script" path="res://spider/spider.gd" id="1_qp2s0"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dpkk4nloqregj" path="res://flashlight.png" id="5_5gwvf"]
 [ext_resource type="Script" path="res://spider/raycasts.gd" id="5_v72i4"]
 [ext_resource type="Script" path="res://spider/ik_targets.gd" id="6_4bixb"]
+[ext_resource type="Script" path="res://spider/body_height_raycast.gd" id="7_rbqja"]
 [ext_resource type="Script" path="res://spider/movement_target.gd" id="8_o25ar"]
 [ext_resource type="Script" path="res://spider/debug_sprite.gd" id="8_tiv8l"]
 
@@ -488,24 +489,52 @@ script = ExtResource("5_v72i4")
 metadata/_edit_lock_ = true
 
 [node name="LLRaycast" type="RayCast2D" parent="Raycasts"]
+visible = false
 position = Vector2(-400, -619)
 target_position = Vector2(0, 1300)
 
 [node name="ULRaycast" type="RayCast2D" parent="Raycasts"]
+visible = false
 position = Vector2(-300, -619)
 target_position = Vector2(0, 1300)
 
 [node name="LRRaycast" type="RayCast2D" parent="Raycasts"]
+visible = false
 position = Vector2(400, -619)
 target_position = Vector2(0, 1300)
 
 [node name="URRaycast" type="RayCast2D" parent="Raycasts"]
+visible = false
 position = Vector2(300, -619)
 target_position = Vector2(0, 1300)
 
-[node name="BodyHeightRaycast" type="RayCast2D" parent="Raycasts"]
-position = Vector2(0, 67)
+[node name="BodyHeightRaycast" type="Node2D" parent="Raycasts"]
+position = Vector2(1, -582)
+script = ExtResource("7_rbqja")
+ray_amount = 30
+min_weight = 0.6
+ray_spread_width = 1000.0
+cast_angle = 145.0
+
+[node name="Ray1" type="RayCast2D" parent="Raycasts/BodyHeightRaycast"]
 target_position = Vector2(0, 1000)
+hit_from_inside = true
+
+[node name="Ray2" type="RayCast2D" parent="Raycasts/BodyHeightRaycast"]
+target_position = Vector2(0, 1000)
+hit_from_inside = true
+
+[node name="Ray3" type="RayCast2D" parent="Raycasts/BodyHeightRaycast"]
+target_position = Vector2(0, 1000)
+hit_from_inside = true
+
+[node name="Ray4" type="RayCast2D" parent="Raycasts/BodyHeightRaycast"]
+target_position = Vector2(0, 1000)
+hit_from_inside = true
+
+[node name="Ray5" type="RayCast2D" parent="Raycasts/BodyHeightRaycast"]
+target_position = Vector2(0, 1000)
+hit_from_inside = true
 
 [node name="IKTargets" type="Node2D" parent="."]
 top_level = true
@@ -573,5 +602,9 @@ script = ExtResource("8_o25ar")
 [node name="Sprite2D2" type="Sprite2D" parent="MovementTarget"]
 texture = SubResource("GradientTexture2D_4hwf5")
 script = ExtResource("8_tiv8l")
+
+[node name="LowestPointMarker" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, 78)
 
 [connection signal="body_entered" from="PlayerDetection" to="." method="_spotted_player"]

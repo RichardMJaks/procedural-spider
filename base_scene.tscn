@@ -152,7 +152,7 @@ shape = SubResource("RectangleShape2D_8s678")
 position = Vector2(419, 170)
 
 [node name="Stairs1" type="StaticBody2D" parent="Stairs"]
-position = Vector2(1238, 47)
+position = Vector2(1251, 47)
 collision_layer = 3
 collision_mask = 0
 
@@ -186,7 +186,7 @@ position = Vector2(137.5, 115.5)
 shape = SubResource("RectangleShape2D_jl31r")
 
 [node name="Stairs3" type="StaticBody2D" parent="Stairs"]
-position = Vector2(1803, -281)
+position = Vector2(1790, -281)
 collision_layer = 3
 collision_mask = 0
 
@@ -250,7 +250,7 @@ debug_color = Color(0.994522, 0, 0.220714, 0.42)
 texture = SubResource("GradientTexture2D_ce0r0")
 
 [node name="Spider" parent="." instance=ExtResource("1_doaqp")]
-position = Vector2(-4832, -320)
+position = Vector2(-4759, -188)
 distance_from_ground = 300.0
 dampening_force = 0.75
 is_active = true

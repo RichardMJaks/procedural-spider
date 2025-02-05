@@ -4,8 +4,9 @@ extends CharacterBody2D
 @onready var anim: AnimationPlayer = $AnimationPlayer
 @onready var eye: Bone2D = %Eye
 @onready var ik: Node2D = $IKTargets
-@onready var ground_detection: RayCast2D = $Raycasts/BodyHeightRaycast
+@onready var ground_detection: Node2D = $Raycasts/BodyHeightRaycast
 @onready var movement_target: Marker2D = %MovementTarget
+@onready var lowest_point: Marker2D = %LowestPointMarker
 
 var looking_at_player: bool = false
 var player: Node2D = null
@@ -67,7 +68,7 @@ func _calculate_vertical_forces(delta: float) -> void:
 	
 
 func _calculate_upwards_force(normalized_distance: float) -> float:
-	if not is_active or not ground_detection.is_colliding():
+	if not is_active or not ground_detection.is_colliding:
 		return 0
 	var foot_multiplier = 0.5 * sqrt(ik.supporting_feet)
 	#print("Foot multiplier: " + str(foot_multiplier))
@@ -77,10 +78,24 @@ func _calculate_upwards_force(normalized_distance: float) -> float:
 
 func _get_normalized_distance_from_ground() -> float:
 	var ground_distance: float = distance_from_ground
-	if ground_detection.is_colliding():
-		ground_distance = ground_detection.get_collision_point().distance_to(ground_detection.global_position)
-	var normalized_distance = ground_distance / distance_from_ground
-	return normalized_distance
+	if ground_detection.is_colliding:
+		var ik_points = ik.get_children()
+		var ground_y = float(
+			ik_points.reduce(
+				func(accum: float, node): 
+					return min(float(accum), node.global_position.y),
+			ik_points[0].global_position.y
+		))
+		#ground_y = (ground_y / 4)  
+		var avg_y = (ground_y + ground_detection.avg_y) / 2
+		ground_distance = ground_detection.avg_y - global_position.y 
+
+		print("Ground y: " + str(ground_y))
+	var normalized_distance = clampf(ground_distance / distance_from_ground, 0, 1)
+	print("Global position y: " + str(global_position.y))
+	print("ground_distance: " + str(ground_distance))
+	print("Normalized distance: " + str(normalized_distance))
+	return normalized_distance	
 
 func _spotted_player(body: Node2D) -> void:
 	if player:
