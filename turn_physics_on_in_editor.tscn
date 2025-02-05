@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfot2pq7hucmb"]
+
+[sub_resource type="GDScript" id="GDScript_qfcrt"]
+resource_name = "physics_in_editor"
+script/source = "@tool
+extends Node
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	PhysicsServer2D.set_active(true)
+"
+
+[node name="TurnPhysicsOnInEditor" type="Node"]
+script = SubResource("GDScript_qfcrt")

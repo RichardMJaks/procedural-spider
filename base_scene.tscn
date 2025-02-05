@@ -1,0 +1,271 @@
+[gd_scene load_steps=18 format=3 uid="uid://c1irro4hkex5a"]
+
+[ext_resource type="PackedScene" uid="uid://ctvuxvw5y3b41" path="res://spider/spider.tscn" id="1_doaqp"]
+[ext_resource type="Texture2D" uid="uid://cyjoyr0ev28n1" path="res://addons/kenney_prototype_textures/dark/texture_09.png" id="2_cb2y3"]
+[ext_resource type="Texture2D" uid="uid://cfyl8wdomcgpp" path="res://addons/kenney_prototype_textures/green/texture_10.png" id="2_en16y"]
+[ext_resource type="Texture2D" uid="uid://dahia2fx34k5a" path="res://addons/kenney_prototype_textures/orange/texture_09.png" id="3_fws0i"]
+[ext_resource type="Texture2D" uid="uid://cjjat3mfqr28t" path="res://addons/kenney_prototype_textures/purple/texture_09.png" id="4_35fcu"]
+[ext_resource type="Script" path="res://turn_physics_on_in_editor.gd" id="4_q51gi"]
+[ext_resource type="Texture2D" uid="uid://dhx3x73l2xh4w" path="res://addons/kenney_prototype_textures/red/texture_09.png" id="5_7qc27"]
+[ext_resource type="PackedScene" uid="uid://si4atu4c01fq" path="res://player.tscn" id="5_qbemk"]
+
+[sub_resource type="Environment" id="Environment_bte6p"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 0.63
+glow_blend_mode = 0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_orsec"]
+size = Vector2(1108, 432)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8s678"]
+size = Vector2(277, 227)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jl31r"]
+size = Vector2(277, 1063)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_um5aq"]
+size = Vector2(9528, 1173)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_07hgs"]
+size = Vector2(1115, 1173)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3axvj"]
+radius = 267.98
+
+[sub_resource type="Gradient" id="Gradient_vxhxd"]
+interpolation_mode = 1
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ce0r0"]
+gradient = SubResource("Gradient_vxhxd")
+width = 530
+height = 530
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[node name="BaseScene" type="Node2D"]
+script = ExtResource("4_q51gi")
+physics_active = false
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+position = Vector2(-6290, -3219)
+color = Color(0, 0, 0, 1)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_bte6p")
+
+[node name="BG" type="TextureRect" parent="."]
+offset_left = -10733.0
+offset_top = -3219.0
+offset_right = 12571.0
+offset_bottom = 4679.0
+texture = ExtResource("2_cb2y3")
+stretch_mode = 1
+
+[node name="Ramp" type="StaticBody2D" parent="."]
+position = Vector2(-3757, -11)
+rotation = -0.386078
+collision_layer = 3
+collision_mask = 0
+
+[node name="TextureRect" type="TextureRect" parent="Ramp"]
+offset_right = 1105.0
+offset_bottom = 433.0
+texture = ExtResource("3_fws0i")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ramp"]
+position = Vector2(553, 218)
+shape = SubResource("RectangleShape2D_orsec")
+
+[node name="ElevatedGround" type="StaticBody2D" parent="."]
+position = Vector2(-2734, -428.645)
+collision_layer = 3
+collision_mask = 0
+
+[node name="TextureRect" type="TextureRect" parent="ElevatedGround"]
+offset_right = 1105.0
+offset_bottom = 433.0
+texture = ExtResource("3_fws0i")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ElevatedGround"]
+position = Vector2(553, 218)
+shape = SubResource("RectangleShape2D_orsec")
+
+[node name="Boxes" type="Node2D" parent="."]
+position = Vector2(419, 170)
+
+[node name="Boxes1" type="StaticBody2D" parent="Boxes"]
+position = Vector2(-1065, -383)
+collision_layer = 3
+collision_mask = 0
+
+[node name="TextureRect" type="TextureRect" parent="Boxes/Boxes1"]
+offset_right = 273.0
+offset_bottom = 229.0
+texture = ExtResource("4_35fcu")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boxes/Boxes1"]
+position = Vector2(137.5, 115.5)
+shape = SubResource("RectangleShape2D_8s678")
+
+[node name="Boxes2" type="StaticBody2D" parent="Boxes"]
+position = Vector2(-401, -383)
+collision_layer = 3
+collision_mask = 0
+
+[node name="TextureRect" type="TextureRect" parent="Boxes/Boxes2"]
+offset_right = 273.0
+offset_bottom = 229.0
+texture = ExtResource("4_35fcu")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boxes/Boxes2"]
+position = Vector2(137.5, 115.5)
+shape = SubResource("RectangleShape2D_8s678")
+
+[node name="Boxes3" type="StaticBody2D" parent="Boxes"]
+position = Vector2(253, -383)
+collision_layer = 3
+collision_mask = 0
+
+[node name="TextureRect" type="TextureRect" parent="Boxes/Boxes3"]
+offset_right = 273.0
+offset_bottom = 229.0
+texture = ExtResource("4_35fcu")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boxes/Boxes3"]
+position = Vector2(137.5, 115.5)
+shape = SubResource("RectangleShape2D_8s678")
+
+[node name="Stairs" type="Node2D" parent="."]
+position = Vector2(419, 170)
+
+[node name="Stairs1" type="StaticBody2D" parent="Stairs"]
+position = Vector2(1238, 47)
+collision_layer = 3
+collision_mask = 0
+
+[node name="TextureRect" type="TextureRect" parent="Stairs/Stairs1"]
+offset_top = -407.0
+offset_right = 273.0
+offset_bottom = 636.0
+texture = ExtResource("5_7qc27")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stairs/Stairs1"]
+position = Vector2(137.5, 115.5)
+shape = SubResource("RectangleShape2D_jl31r")
+
+[node name="Stairs2" type="StaticBody2D" parent="Stairs"]
+position = Vector2(1523, -134)
+collision_layer = 3
+collision_mask = 0
+
+[node name="TextureRect" type="TextureRect" parent="Stairs/Stairs2"]
+offset_top = -413.0
+offset_right = 273.0
+offset_bottom = 642.0
+texture = ExtResource("5_7qc27")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stairs/Stairs2"]
+position = Vector2(137.5, 115.5)
+shape = SubResource("RectangleShape2D_jl31r")
+
+[node name="Stairs3" type="StaticBody2D" parent="Stairs"]
+position = Vector2(1803, -281)
+collision_layer = 3
+collision_mask = 0
+
+[node name="TextureRect" type="TextureRect" parent="Stairs/Stairs3"]
+offset_top = -413.0
+offset_right = 273.0
+offset_bottom = 642.0
+texture = ExtResource("5_7qc27")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stairs/Stairs3"]
+position = Vector2(137.5, 115.5)
+shape = SubResource("RectangleShape2D_jl31r")
+
+[node name="Floor" type="StaticBody2D" parent="."]
+collision_layer = 3
+collision_mask = 0
+
+[node name="TextureRect" type="TextureRect" parent="Floor"]
+offset_left = -5616.0
+offset_top = -7.0
+offset_right = 3903.0
+offset_bottom = 1170.0
+texture = ExtResource("2_en16y")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(-861, 582.5)
+shape = SubResource("RectangleShape2D_um5aq")
+
+[node name="Floor2" type="StaticBody2D" parent="."]
+position = Vector2(10807, -12)
+collision_layer = 3
+collision_mask = 0
+
+[node name="TextureRect" type="TextureRect" parent="Floor2"]
+offset_left = -5616.0
+offset_top = -7.0
+offset_right = -4529.0
+offset_bottom = 1170.0
+texture = ExtResource("2_en16y")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor2"]
+position = Vector2(-5067.5, 582.5)
+shape = SubResource("RectangleShape2D_07hgs")
+
+[node name="Ball" type="RigidBody2D" parent="."]
+position = Vector2(-4998, -1892)
+rotation = -0.124451
+mass = 0.3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+shape = SubResource("CircleShape2D_3axvj")
+debug_color = Color(0.994522, 0, 0.220714, 0.42)
+
+[node name="Sprite2D" type="Sprite2D" parent="Ball"]
+texture = SubResource("GradientTexture2D_ce0r0")
+
+[node name="Spider" parent="." instance=ExtResource("1_doaqp")]
+position = Vector2(-4832, -320)
+distance_from_ground = 300.0
+dampening_force = 0.75
+is_active = true
+
+[node name="Player" parent="." instance=ExtResource("5_qbemk")]
+position = Vector2(-2430, -500)
+speed = 1000
+jump_force = 700.0
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(0.445, 0.445)
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+color = Color(0.176419, 0.176419, 0.176419, 1)
+
+[node name="DirectionalLight2D2" type="DirectionalLight2D" parent="."]
+position = Vector2(-1919, -210)
+editor_only = true
